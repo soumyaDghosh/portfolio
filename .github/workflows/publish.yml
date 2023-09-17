@@ -19,6 +19,5 @@ jobs:
           flutter-version: ${{env.FLUTTER_VERSION}}
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
-          workingDir: example
           baseHref: /portfolio/
           webRenderer: canvaskit
