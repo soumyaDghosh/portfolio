@@ -1,6 +1,6 @@
 const padding = 20.0;
 
-const website = 'https://github.com/soumyaDghosh';
+const website = 'https://soumyadghosh.github.io/portfolio';
 
 const telegram = 'https://telegram.me/soumyatheman';
 
