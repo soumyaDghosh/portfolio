@@ -10,10 +10,12 @@ const gitlab = 'https://gitlab.com/soumyaDghosh';
 
 const discord = 'https://discord.com/users/soumyaDghosh';
 
+const Bharat = 'https://www.mea.gov.in/Images/pdf1/Part1.pdf';
+
 final snaps = <String, (String, String)>{
   'https://snapcraft.io/webcord': (
     'Webcord',
-    'https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_48,h_48/https://dashboard.snapcraft.io/site_media/appmedia/2023/08/webcord.png'
+    'https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_60,h_60/https://dashboard.snapcraft.io/site_media/appmedia/2023/08/webcord.png'
   ),
   'https://snapcraft.io/ffmpeg-2204': (
     'ffmpeg-2204',

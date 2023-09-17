@@ -1,10 +1,14 @@
 // ignore: avoid_web_libraries_in_flutter
+//import 'dart:ffi';
 import 'dart:html' as html;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:soumyadghosh_io/constants.dart';
 import 'package:soumyadghosh_io/expandable_fab.dart';
+import 'package:yaru_icons/yaru_icons.dart';
+//import 'package:yaru/yaru.dart';
+import 'package:yaru_widgets/yaru_widgets.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -13,6 +17,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentWidth = MediaQuery.of(context).size.width.toInt();
+    final String desh, naam;
+    if (currentWidth < 600) {
+      desh = '';
+    } else {
+      desh = 'Bharat';
+    }
+    if (currentWidth < 420) {
+      naam = 'Soumya';
+    } else if (currentWidth > 420 && currentWidth < 600) {
+      naam = 'Soumyadeep Ghosh';
+    } else {
+      naam = 'Soumyadeep Ghosh,';
+    }
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
@@ -23,13 +41,24 @@ class HomePage extends StatelessWidget {
             backgroundImage: NetworkImage(avatar),
           ),
         ),
-        title: const Text('Soumyadeep Ghosh, India'),
+        title: Row(
+          children: [
+            Text(naam),
+            const SizedBox(
+              width: 5,
+            ),
+            GestureDetector(
+              onTap: () => _click(Bharat),
+              child: Text(desh),
+            ),
+          ],
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: padding),
-            child: TextButton(
+            child: YaruIconButton(
               onPressed: () => _click(website),
-              child: const Text('GitHub'),
+              icon: const Icon(YaruIcons.home_filled),
             ),
           ),
         ],
@@ -60,55 +89,54 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(
-              left: padding,
-              right: padding,
-              bottom: padding,
+            padding: const EdgeInsets.all(padding),
+            child: Text(
+              currentWidth > 600
+                  ? 'My Snap Packaging Projects'
+                  : 'Snap Packages',
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.displaySmall
+                  ?.copyWith(fontWeight: FontWeight.w100),
             ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'My snap packaging projects',
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.displaySmall
-                        ?.copyWith(fontWeight: FontWeight.w100),
-                  ),
-                ),
-              ],
+          ),
+          Text(
+            'Published by me',
+            style: theme.textTheme.displaySmall?.copyWith(
+              fontWeight: FontWeight.w100,
+              fontSize: 25,
             ),
           ),
           Expanded(
-            child: ListView.separated(
-              padding: const EdgeInsets.only(
-                left: padding,
-                right: padding * 4,
-                bottom: padding,
-              ),
-              itemCount: snaps.length,
-              itemBuilder: (context, index) {
+            flex: 2,
+            child: GridView.count(
+              // Create a grid with 2 columns. If you change the scrollDirection to
+              // horizontal, this produces 2 rows.
+              crossAxisCount: currentWidth ~/ 175,
+              // Generate 100 widgets that display their index in the List.
+              children: List.generate(snaps.length, (index) {
                 final snap = snaps.entries.elementAt(index);
-                return SizedBox(
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.all(padding / 4),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(padding / 2),
-                    ),
-                    onTap: () => _click(snap.key),
-                    leading: Image.network(
-                      snap.value.$2,
-                      filterQuality: FilterQuality.medium,
-                    ),
-                    title: Text(snap.value.$1),
-                    // trailing: Icon(YaruIcons.snapcraft),
+                return Center(
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () => _click(snap.key),
+                        child: Image.network(
+                          snap.value.$2,
+                          height: 100,
+                          scale: 1,
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          snap.value.$1,
+                          style: Theme.of(context).textTheme.headlineSmall,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
                   ),
                 );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const SizedBox(
-                  height: padding / 2,
-                );
-              },
+              }),
             ),
           ),
         ],

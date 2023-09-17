@@ -14,12 +14,12 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // TODO: uncomment if you want full yaru or only the Ubuntu font here
-      // theme: yaruLight,
-      // darkTheme: yaruDark,
+      theme: yaruLight,
+      darkTheme: yaruDark,
       // then comment 20 and 21
-      theme: _m3Theme().copyWith(textTheme: yaruLight.textTheme),
-      darkTheme: _m3Theme(brightness: Brightness.dark)
-          .copyWith(textTheme: yaruDark.textTheme),
+      //theme: _m3Theme().copyWith(textTheme: yaruLight.textTheme),
+      //darkTheme: _m3Theme(brightness: Brightness.dark)
+      //    .copyWith(textTheme: yaruDark.textTheme),
       home: const HomePage(),
     );
   }

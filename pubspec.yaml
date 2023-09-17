@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   flutter_tabler_icons: ^1.2.0
   yaru: ^1.0.0
+  yaru_icons: ^2.2.1
+  yaru_widgets: ^3.0.2
 
 dev_dependencies:
   flutter_test:
