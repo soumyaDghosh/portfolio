@@ -39,7 +39,9 @@ class HomePage extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.white,
+                  color: theme.brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                   width: 5,
                 ),
               ),
@@ -135,10 +137,10 @@ class HomePage extends StatelessWidget {
               spacing: padding,
               overflowAlignment: OverflowBarAlignment.end,
               children: [
-                langButton('English', currentWidth),
-                langButton('Bangla', currentWidth),
-                langButton('Hindi', currentWidth),
-                langButton('Sanskrit', currentWidth),
+                langButton('English', currentWidth, context),
+                langButton('Bangla', currentWidth, context),
+                langButton('Hindi', currentWidth, context),
+                langButton('Sanskrit', currentWidth, context),
               ],
             ),
           ),
