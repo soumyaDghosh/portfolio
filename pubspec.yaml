@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_devicon: ^1.0.1
   flutter_tabler_icons: ^1.2.0
   yaru: ^1.0.0
   yaru_icons: ^2.2.1
