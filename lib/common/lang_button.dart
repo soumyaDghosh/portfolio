@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:soumyadghosh_io/click.dart';
 
-Widget clangButton(IconData iconName, int currentwidth) {
+Widget clangButton(IconData iconName, int currentwidth, String lang) {
   final double height, width, fontSize;
   if (currentwidth >= 1000) {
     height = 100;
@@ -27,7 +28,9 @@ Widget clangButton(IconData iconName, int currentwidth) {
         iconName,
         size: fontSize,
       ),
-      onPressed: () {},
+      onPressed: () => openUrl(
+        'https://github.com/soumyaDghosh?tab=repositories&q=&type=&language=$lang&sort=',
+      ),
     ),
   );
 }
