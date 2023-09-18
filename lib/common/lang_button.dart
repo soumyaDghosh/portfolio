@@ -35,8 +35,9 @@ Widget clangButton(IconData iconName, int currentwidth, String lang) {
   );
 }
 
-Widget langButton(String langName, int currentwidth) {
+Widget langButton(String langName, int currentwidth, BuildContext context) {
   final double height, width, fontSize;
+  final theme = Theme.of(context);
   if (currentwidth >= 1000) {
     height = 100;
     width = 200;
@@ -60,7 +61,7 @@ Widget langButton(String langName, int currentwidth) {
     child: TextButton(
       child: Text(
         langName,
-        style: TextStyle(fontSize: fontSize, color: Colors.white),
+        style: theme.textTheme.displaySmall?.copyWith(fontSize: fontSize),
       ),
       onPressed: () {},
     ),
