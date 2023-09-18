@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:soumyadghosh_io/click.dart';
 import 'package:flutter_devicon/flutter_devicon.dart';
 import 'package:soumyadghosh_io/common/floating_action.dart';
 //import 'package:soumyadghosh_io/click.dart';
 import 'package:soumyadghosh_io/common/header.dart';
 import 'package:soumyadghosh_io/common/lang_button.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'constants.dart';
 //import 'package:yaru_icons/yaru_icons.dart';
 
@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
                   ?.copyWith(fontSize: fontSize - 3),
             ),
             leading: Icon(
-              FlutterDEVICON.bash_plain,
+              TablerIcons.code,
               size: fontSize + 10,
             ),
           ),
@@ -75,9 +75,21 @@ class HomePage extends StatelessWidget {
               spacing: padding,
               overflowAlignment: OverflowBarAlignment.end,
               children: [
-                clangButton(FlutterDEVICON.c_plain, currentWidth),
-                clangButton(FlutterDEVICON.cplusplus_plain, currentWidth),
-                clangButton(FlutterDEVICON.html5_plain, currentWidth),
+                clangButton(
+                  FlutterDEVICON.c_plain,
+                  currentWidth,
+                  'c',
+                ),
+                clangButton(
+                  FlutterDEVICON.cplusplus_plain,
+                  currentWidth,
+                  'c%2B%2B',
+                ),
+                clangButton(
+                  FlutterDEVICON.html5_plain,
+                  currentWidth,
+                  'html',
+                ),
               ],
             ),
           ),
@@ -86,9 +98,21 @@ class HomePage extends StatelessWidget {
               spacing: padding,
               overflowAlignment: OverflowBarAlignment.end,
               children: [
-                clangButton(FlutterDEVICON.flutter_plain, currentWidth),
-                clangButton(FlutterDEVICON.rust_plain, currentWidth),
-                clangButton(FlutterDEVICON.python_plain, currentWidth),
+                clangButton(
+                  FlutterDEVICON.flutter_plain,
+                  currentWidth,
+                  'dart',
+                ),
+                clangButton(
+                  FlutterDEVICON.rust_plain,
+                  currentWidth,
+                  'rust',
+                ),
+                clangButton(
+                  FlutterDEVICON.python_plain,
+                  currentWidth,
+                  'python',
+                ),
               ],
             ),
           ),
