@@ -1,148 +1,156 @@
-// ignore: avoid_web_libraries_in_flutter
-//import 'dart:ffi';
-import 'dart:html' as html;
-
 import 'package:flutter/material.dart';
+import 'package:flutter_devicon/flutter_devicon.dart';
+import 'package:soumyadghosh_io/common/floating_action.dart';
+//import 'package:soumyadghosh_io/click.dart';
+import 'package:soumyadghosh_io/common/header.dart';
+import 'package:soumyadghosh_io/common/lang_button.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
-import 'package:soumyadghosh_io/constants.dart';
-import 'package:soumyadghosh_io/expandable_fab.dart';
-import 'package:yaru_icons/yaru_icons.dart';
-//import 'package:yaru/yaru.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
+import 'constants.dart';
+//import 'package:yaru_icons/yaru_icons.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({
-    super.key,
-  });
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final currentWidth = MediaQuery.of(context).size.width.toInt();
-    final String desh, naam;
-    if (currentWidth < 600) {
-      desh = '';
-    } else {
-      desh = 'Bharat';
-    }
-    if (currentWidth < 420) {
-      naam = 'Soumya';
-    } else if (currentWidth > 420 && currentWidth < 600) {
-      naam = 'Soumyadeep Ghosh';
-    } else {
-      naam = 'Soumyadeep Ghosh,';
-    }
     final theme = Theme.of(context);
+    final double fontSize;
+    if (currentWidth >= 1100) {
+      fontSize = 50;
+    } else if (currentWidth >= 600 && currentWidth < 1100) {
+      fontSize = 38;
+    } else if (currentWidth >= 485 && currentWidth < 600) {
+      fontSize = 25;
+    } else {
+      fontSize = 20;
+    }
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 80,
-        leading: const Padding(
-          padding: EdgeInsets.only(left: padding),
-          child: CircleAvatar(
-            backgroundImage: NetworkImage(avatar),
-          ),
-        ),
-        title: Row(
-          children: [
-            Text(naam),
-            const SizedBox(
-              width: 5,
-            ),
-            GestureDetector(
-              onTap: () => _click(Bharat),
-              child: Text(desh),
-            ),
-          ],
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: padding),
-            child: YaruIconButton(
-              onPressed: () => _click(website),
-              icon: const Icon(YaruIcons.home_filled),
-            ),
-          ),
-        ],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(50),
+        child: appBar(context),
       ),
-      floatingActionButton: ExpandableFab(
-        distance: 112,
-        children: [
-          ActionButton(
-            onPressed: () => _click(website),
-            icon: const Icon(
-              TablerIcons.brand_github,
-            ),
-          ),
-          ActionButton(
-            onPressed: () => _click(telegram),
-            icon: const Icon(TablerIcons.brand_telegram),
-          ),
-          ActionButton(
-            onPressed: () => _click(gitlab),
-            icon: const Icon(TablerIcons.brand_gitlab),
-          ),
-          ActionButton(
-            onPressed: () => _click(discord),
-            icon: const Icon(TablerIcons.brand_discord),
-          ),
-        ],
-      ),
-      body: Column(
+      floatingActionButton: floatingActionbutton(),
+      body: ListView(
+        shrinkWrap: true,
         children: [
           Padding(
             padding: const EdgeInsets.all(padding),
-            child: Text(
-              currentWidth > 600
-                  ? 'My Snap Packaging Projects'
-                  : 'Snap Packages',
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.displaySmall
-                  ?.copyWith(fontWeight: FontWeight.w100),
-            ),
-          ),
-          Text(
-            'Published by me',
-            style: theme.textTheme.displaySmall?.copyWith(
-              fontWeight: FontWeight.w100,
-              fontSize: 25,
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: GridView.count(
-              // Create a grid with 2 columns. If you change the scrollDirection to
-              // horizontal, this produces 2 rows.
-              crossAxisCount: currentWidth ~/ 175,
-              // Generate 100 widgets that display their index in the List.
-              children: List.generate(snaps.length, (index) {
-                final snap = snaps.entries.elementAt(index);
-                return Center(
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () => _click(snap.key),
-                        child: Image.network(
-                          snap.value.$2,
-                          height: 100,
-                          scale: 1,
-                        ),
-                      ),
-                      Center(
-                        child: Text(
-                          snap.value.$1,
-                          style: Theme.of(context).textTheme.headlineSmall,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.white,
+                  width: 5,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(padding),
+                child: Center(
+                  child: Text(
+                    aboutMe,
+                    style: theme.textTheme.displaySmall?.copyWith(
+                      fontWeight: FontWeight.w100,
+                      fontSize: fontSize,
+                    ),
                   ),
-                );
-              }),
+                ),
+              ),
+            ),
+          ),
+          ListTile(
+            //padding: const EdgeInsets.all(padding),
+            title: Text(
+              'Computer Languages currently learning',
+              style: theme.textTheme.displaySmall
+                  ?.copyWith(fontSize: fontSize - 3),
+            ),
+            leading: Icon(
+              TablerIcons.code,
+              size: fontSize + 10,
+            ),
+          ),
+          const Padding(padding: EdgeInsets.all(padding / 2)),
+          Center(
+            child: OverflowBar(
+              spacing: padding,
+              overflowAlignment: OverflowBarAlignment.end,
+              children: [
+                clangButton(
+                  FlutterDEVICON.c_plain,
+                  currentWidth,
+                  'c',
+                ),
+                clangButton(
+                  FlutterDEVICON.cplusplus_plain,
+                  currentWidth,
+                  'c%2B%2B',
+                ),
+                clangButton(
+                  FlutterDEVICON.html5_plain,
+                  currentWidth,
+                  'html',
+                ),
+              ],
+            ),
+          ),
+          Center(
+            child: OverflowBar(
+              spacing: padding,
+              overflowAlignment: OverflowBarAlignment.end,
+              children: [
+                clangButton(
+                  FlutterDEVICON.flutter_plain,
+                  currentWidth,
+                  'dart',
+                ),
+                clangButton(
+                  FlutterDEVICON.rust_plain,
+                  currentWidth,
+                  'rust',
+                ),
+                clangButton(
+                  FlutterDEVICON.python_plain,
+                  currentWidth,
+                  'python',
+                ),
+              ],
+            ),
+          ),
+          const Padding(padding: EdgeInsets.all(padding)),
+          ListTile(
+            //padding: const EdgeInsets.all(padding),
+            title: Text(
+              'Languages I know!',
+              style: theme.textTheme.displaySmall
+                  ?.copyWith(fontSize: fontSize - 3),
+            ),
+            leading: Icon(
+              Icons.translate_rounded,
+              size: fontSize,
+            ),
+          ),
+          const Padding(padding: EdgeInsets.all(padding / 2)),
+          Center(
+            child: OverflowBar(
+              spacing: padding,
+              overflowAlignment: OverflowBarAlignment.end,
+              children: [
+                langButton('English', currentWidth),
+                langButton('Bangla', currentWidth),
+                langButton('Hindi', currentWidth),
+                langButton('Sanskrit', currentWidth),
+              ],
+            ),
+          ),
+          const Padding(padding: EdgeInsets.all(padding * 2)),
+          Center(
+            child: Text(
+              'End!!!',
+              style: TextStyle(fontSize: fontSize),
             ),
           ),
         ],
       ),
     );
   }
-
-  html.WindowBase _click(String url) => html.window.open(url, '');
 }
