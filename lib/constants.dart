@@ -4,6 +4,8 @@ const padding = 20.0;
 
 const website = 'https://soumyadghosh.github.io/portfolio';
 
+const github = 'https://github.com/soumyaDghosh';
+
 const telegram = 'https://telegram.me/soumyatheman';
 
 const avatar = 'https://i.imgur.com/zgynPjC.jpg';
