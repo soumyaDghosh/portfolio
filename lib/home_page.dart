@@ -5,7 +5,7 @@ import 'package:soumyadghosh_io/common/floating_action.dart';
 import 'package:soumyadghosh_io/common/header.dart';
 import 'package:soumyadghosh_io/common/lang_button.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
-import 'constants.dart';
+import 'common/constants.dart';
 //import 'package:yaru_icons/yaru_icons.dart';
 
 class HomePage extends StatelessWidget {
