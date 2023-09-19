@@ -5,14 +5,15 @@
 import 'package:flutter/material.dart';
 import 'package:soumyadghosh_io/click.dart';
 import 'package:soumyadghosh_io/common/floating_action.dart';
-import 'package:soumyadghosh_io/constants.dart';
+import 'package:soumyadghosh_io/common/constants.dart';
+import 'common/constant_snaps_published.dart';
 //import 'package:yaru_icons/yaru_icons.dart';
 //import 'package:yaru/yaru.dart';
 //import 'package:yaru_widgets/yaru_widgets.dart';
 import 'common/header.dart';
 
-class SnapPage extends StatelessWidget {
-  const SnapPage({
+class SnapPublishedPage extends StatelessWidget {
+  const SnapPublishedPage({
     super.key,
   });
 
