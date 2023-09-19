@@ -9,7 +9,7 @@ Widget floatingActionbutton() {
     distance: 112,
     children: [
       ActionButton(
-        onPressed: () => openUrl(website),
+        onPressed: () => openUrl(github),
         icon: const Icon(
           TablerIcons.brand_github,
         ),
