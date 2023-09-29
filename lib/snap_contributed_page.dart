@@ -30,7 +30,7 @@ class SnapContributedPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: appBar(context),
+        child: appBar(context, 4),
       ),
       floatingActionButton: floatingActionbutton(),
       body: Column(
