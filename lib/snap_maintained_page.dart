@@ -30,7 +30,7 @@ class SnapMaintainedPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: appBar(context),
+        child: appBar(context, 3),
       ),
       floatingActionButton: floatingActionbutton(),
       body: Column(
