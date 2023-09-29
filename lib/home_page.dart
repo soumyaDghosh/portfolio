@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: appBar(context),
+        child: appBar(context, 1),
       ),
       floatingActionButton: floatingActionbutton(),
       body: ListView(
