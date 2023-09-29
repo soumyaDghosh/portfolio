@@ -1,16 +1,12 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'package:flutter/material.dart';
-import 'package:soumyadghosh_io/home_page.dart';
-import 'package:soumyadghosh_io/snap_maintained_page.dart';
 import 'constants.dart';
 import 'package:yaru_icons/yaru_icons.dart';
 import 'package:yaru_widgets/yaru_widgets.dart';
 import 'package:soumyadghosh_io/click.dart';
-import 'package:soumyadghosh_io/snap_published_page.dart';
-import 'package:soumyadghosh_io/snap_contributed_page.dart';
 import 'popup_menu.dart';
 
-Widget appBar(BuildContext context) {
+Widget appBar(BuildContext context, int current) {
   final currentWidth = MediaQuery.of(context).size.width.toInt();
   final String desh, naam;
   final theme = Theme.of(context);
@@ -63,24 +59,30 @@ Widget appBar(BuildContext context) {
           itemBuilder: (context) => [
             popupMenu(
               'Published',
-              context,
+              current != 2
+                  ? () => Navigator.pushNamed(context, '/snapPublished')
+                  : () {},
+              //context,
               theme,
               fontSize,
-              (context) => const SnapPublishedPage(),
             ),
             popupMenu(
               'Maintained',
-              context,
+              current != 3
+                  ? () => Navigator.pushNamed(context, '/snapMaintained')
+                  : () {},
+              //context,
               theme,
               fontSize,
-              (context) => const SnapMaintainedPage(),
             ),
             popupMenu(
               'Contributed',
-              context,
+              current != 4
+                  ? () => Navigator.pushNamed(context, '/snapContributed')
+                  : () {},
+              //context,
               theme,
               fontSize,
-              (context) => const SnapContributedPage(),
             ),
           ],
           child: YaruIconButton(
@@ -95,15 +97,13 @@ Widget appBar(BuildContext context) {
         const Padding(padding: EdgeInsets.all(padding / 5)),
         Padding(
           padding: const EdgeInsets.only(right: padding),
-          child: YaruIconButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const HomePage(),
-              ),
-            ),
-            icon: const Icon(YaruIcons.home_filled),
-          ),
+          child: current != 1
+              ? YaruIconButton(
+                  //onPressed: () => Navigator.pushNamed(context, '/home'),
+                  onPressed: () => Navigator.pushNamed(context, '/home'),
+                  icon: const Icon(YaruIcons.home_filled),
+                )
+              : const Icon(YaruIcons.home_filled),
         ),
       ],
     ),
